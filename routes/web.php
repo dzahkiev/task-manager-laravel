@@ -13,6 +13,10 @@
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
+  return view('welcome');
+});
+
+Route::get('/tasks', function () {
 	$task = \App\Task::orderBy('created_at', 'asc')->get();
     return view('task', [
     	'task' => $task
@@ -42,3 +46,5 @@ Route::delete('/task/{task}', function (\App\Task $task) {
 
 	return redirect('/');
 });
+
+Auth::routes();
